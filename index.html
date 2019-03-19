@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Word Guess Game</title>
+  </head>
+  <body>
+
+    
+    <script>
+// Define Variables, Arrays, Objects
+    var userInput;
+    var wordList = ["golf","birdie","par"];
+    var inputTest = [];
+    
+      
+     
+// button press for methods
+    document.onkeyup = function(event) {
+        var userInput = event.key.toLocaleLowerCase();
+        inputTest.push(userInput);
+        console.log("input was ", userInput);
+        for (var x=inputTest.length-1; x>-1, x--;) {
+            console.log(inputTest[x]);  
+        }
+     };
+     
+    </script>
+    
+  </body>
+</html>
