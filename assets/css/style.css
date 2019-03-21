@@ -1,0 +1,7 @@
+button {font-family: 'Roboto Mono', monospace;
+        font-weight: 400;
+}
+
+#worddisplay {
+    border: 2px solid black;
+}
