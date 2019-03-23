@@ -86,17 +86,42 @@
     var userInput;
     var wordList = ["golf","birdie","par"];
     var inputTest = [];
-    
+    var gameWord;
+// determine what word is being used for game
+    function selectWord() {
+      gameWord = wordList[Math.floor(Math.random()*2)];
+      console.log(gameWord);
+      return gameWord;
+    };
+ //Determine if the word had the input letter and its position in the string
+  
       
      
-// key event for user input
+// key event for user input and check to see if the letter is present in the selected word
     document.onkeyup = function(event) {
         var userInput = event.key.toLocaleLowerCase();
         inputTest.push(userInput);
         console.log("input was ", userInput);
+        var ltrChk = gameWord.indexOf(userInput);
+      if (ltrChk != -1) {
+        console.log("true");
+        console.log(ltrChk);
+      } else {console.log("not present");};
+      
      };
-     console.log(wordList[0][0]);
-     console.log(wordList[1].length);
+    
+
+
+
+
+     selectWord();
+     
+
+
+
+
+
+
     </script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
