@@ -16,8 +16,8 @@
           <h1>Word Guess Game<h1>
         </div>
       </div>
-      <div class="row" id="selected">
-          <h2>The letter selected is</h2>
+      <div class="row">
+          <h2>The letter selected is</h2> <h1 id="selected"></h1>
       </div>
 <!--Alphabet box layout-->
     <!--<div class="row">
@@ -81,6 +81,9 @@
 <!--display row layout-->
 <div class="row" id="worddisply">
     <div class="col-md-12">
+      <span>
+        <h1 id="ltr0">__</h1><h1 id="ltr1">__</h1><h1 id="ltr2">__</h1><h1 id="ltr3">__</h1><h1 id="ltr4">__</h1><h1 id="ltr5">__</h1><h1 id="ltr6">__</h1>
+      </span>  
     </div>
 </div>
   </div><!--container /div-->
@@ -111,14 +114,18 @@
   
       
      
-// key event for user input and check to see if the letter is present in the selected word
+// key event for user input and check to see if the letter is present in the selected word and position of the letter
+
     document.onkeyup = function(event) {
         var userInput = event.key.toLocaleLowerCase();
         console.log("input was ", userInput);
         var ltrChk = gameWord.indexOf(userInput);
+        var position = "ltr" + ltrChk;
+        document.getElementById(`selected`).innerHTML = userInput; //outputs the input to the DOM
       if (ltrChk != -1) {
-        console.log("true");
-        console.log(ltrChk);
+        document.getElementById(position).innerHTML = userInput; //outputs the input to the DOM
+        gameWord[ltrChk] = "0"; //attempt to eliminate duplicate letters
+        console.log(gameWord);
       } else {console.log("not present");};
       
      };
