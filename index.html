@@ -17,8 +17,11 @@
         </div>
       </div>
       <div class="row">
-          <h2>The letter selected is</h2> <h1 id="selected"></h1>
+          <h2>The letter selected is </h2> <h1 id="selected"></h1>
       </div>
+      <div class="row">
+          <h1 id="Gameover"></h1>
+    </div>
 <!--Alphabet box layout-->
     <!--<div class="row">
           <div class="col-md-3">
@@ -82,7 +85,7 @@
 <div class="row" id="worddisply">
     <div class="col-md-12">
       <span>
-        <h1 id="ltr0">__</h1><h1 id="ltr1">__</h1><h1 id="ltr2">__</h1><h1 id="ltr3">__</h1><h1 id="ltr4">__</h1><h1 id="ltr5">__</h1><h1 id="ltr6">__</h1>
+        <h1 id="ltr0"> </h1><h1 id="ltr1"> </h1><h1 id="ltr2"> </h1><h1 id="ltr3"> </h1><h1 id="ltr4"> </h1><h1 id="ltr5"> </h1><h1 id="ltr6"> </h1>
       </span>  
     </div>
 </div>
@@ -93,52 +96,76 @@
     var wordList = ["golf","birdie","par"];
     var wordArr = [];
     var gameWord;
-    
+    var usedLtr = [];
+    var ltrChk;
+    var userInput;
+
 // determine what word is being used for game
     function selectWord() {
-        
         gameWord = wordList[Math.floor(Math.random()*2)];
         console.log(gameWord);
+        for (loop = 0; loop < gameWord.length; loop++) {
+        var position = "ltr" + loop;
+        document.getElementById(position).innerHTML = "__";
+        }; // end of for loop
         return gameWord;
-    };
+    }; // end of function
 
-    function loadArray() {        
-        wordArr.length = 0;      //zeros out the array for the next word
-        for (var x = 0; x < (gameWord.length); x++) {
-           wordArr.push(gameWord[x]);
-           console.log(gameWord[x]);
-    };
-        return wordArr;
-   };
- //Determine if the word had the input letter and its position in the string
+ //determine game is over and ask for play again    
+ function chkComp() {
+      if (gameWord.length === wordArr.length) {
+        document.getElementById(`Gameover`).innerHTML = "Game Over!  Would you like to play Again (y/n)";
+          if (userInput === "y") {
+            usedLtr = [];
+            wordArr = [];
+            selectWord();
+          }; // end of playagain if statement
+
+      }; //end of length compare if statement  
+    }; //end of function
   
       
      
 // key event for user input and check to see if the letter is present in the selected word and position of the letter
 
     document.onkeyup = function(event) {
-        var userInput = event.key.toLocaleLowerCase();
-        console.log("input was ", userInput);
-        var ltrChk = gameWord.indexOf(userInput);
+      userInput = event.key.toLocaleLowerCase();
+      console.log("input was ", userInput);
+      ltrChk = gameWord.indexOf(userInput);
+      console.log(ltrChk,"x");
+      if (ltrChk != -1) {
+        ltrPresent(); 
+        chkComp(); // check for work complete
+      } else {console.log("not present");}; //end of ltrchk if statement
+    
+    }; //end of onkeyup function
+    
+    function ltrPresent() {
+        console.log(ltrChk,"y");
         var position = "ltr" + ltrChk;
         document.getElementById(`selected`).innerHTML = userInput; //outputs the input to the DOM
-      if (ltrChk != -1) {
-        document.getElementById(position).innerHTML = userInput; //outputs the input to the DOM
-        gameWord[ltrChk] = "0"; //attempt to eliminate duplicate letters
-        console.log(gameWord);
-      } else {console.log("not present");};
-      
-     };
+        document.getElementById(position).innerHTML = userInput;
+        console.log("pos",position);
+        usedLtr.push(userInput); //attempt to eliminate duplicate letters
+        for (var loop = ltrChk; loop <= gameWord.length; loop++) {
+          if (gameWord[ltrChk] === gameWord[loop]) { //checks for second letter of the same value in the gameword
+            wordArr.push(userInput);
+            var position = "ltr" + loop;
+            document.getElementById(position).innerHTML = userInput; //outputs the input to the DOM 
+            console.log(loop);
+          }; //end of gameword if statement 
+        }; // end of for statement
+    };
+    
     
 
 
 
 
      selectWord();
-     console.log(gameWord.length);
-     loadArray();
      
-     console.log(wordArr.length);
+     
+     
 
 
 
