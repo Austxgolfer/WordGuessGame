@@ -10,116 +10,103 @@
   </head>
   <body>
     <div class="container">
-<!--Title row layout-->
-      <div class="row justify-content-center" id="titlerow">
-        <div class="col-md">
-          <h1>Word Guess Game<h1>
-        </div>
-      </div>
-      <div class="row">
-          <h2>The letter selected is </h2> <h1 id="selected"></h1>
-      </div>
-      <div class="row">
-          <h1 id="Gameover"></h1>
-    </div>
-<!--Alphabet box layout-->
-    <!--<div class="row">
-          <div class="col-md-3">
-          </div>
-          <div class="col-md-5">
-              <button type="button" class="btn btn-primary btn-lg">A</button>
-              <button type="button" class="btn btn-primary btn-lg">B</button>
-              <button type="button" class="btn btn-primary btn-lg">C</button>
-              <button type="button" class="btn btn-primary btn-lg">D</button>
-              <button type="button" class="btn btn-primary btn-lg">E</button>
-              <button type="button" class="btn btn-primary btn-lg">F</button>
-              <button type="button" class="btn btn-primary btn-lg">G</button>
-              <button type="button" class="btn btn-primary btn-lg">H</button>
-          </div>
-          <div class="col-md-4">
-          </div> 
-      </div>
-      <div class="row">
-          <div class="col-md-4">
-          </div>
-          <div class="col-md-5 ">
-              <button type="button" class="btn btn-primary btn-lg">I</button>
-              <button type="button" class="btn btn-primary btn-lg">J</button>
-              <button type="button" class="btn btn-primary btn-lg">K</button>
-              <button type="button" class="btn btn-primary btn-lg">L</button>
-              <button type="button" class="btn btn-primary btn-lg">M</button>
-              <button type="button" class="btn btn-primary btn-lg">N</button>
-              <button type="button" class="btn btn-primary btn-lg">O</button>
-              <button type="button" class="btn btn-primary btn-lg">P</button>
-          </div>
-          <div class="col-md-3">
-          </div> 
-      </div>
-      <div class="row justify-content-center">
-          <div class="col-md-3">
-          </div>
-          <div class="col-md-5 ">
-              <button type="button" class="btn btn-primary btn-lg">Q</button>
-              <button type="button" class="btn btn-primary btn-lg">R</button>
-              <button type="button" class="btn btn-primary btn-lg">S</button>
-              <button type="button" class="btn btn-primary btn-lg">T</button>
-              <button type="button" class="btn btn-primary btn-lg">U</button>
-              <button type="button" class="btn btn-primary btn-lg">V</button>
-              <button type="button" class="btn btn-primary btn-lg">W</button>
-              <button type="button" class="btn btn-primary btn-lg">X</button>
-          </div>
-          <div class="col-md-4">
-          </div> 
-      </div>
-      <div class="row">
-          <div class="col-md-5">
-          </div>
-          <div class="col-md-2">
-            <button type="button" class="btn btn-primary btn-lg">Y</button>
-            <button type="button" class="btn btn-primary btn-lg">Z</button>
-          </div>
-          <div class="col-md-5">
-          </div> 
-      </div>-->
+<!--Title row layout-->  
+<div class="row" id="titlerow">  
+    <div class="jumbotron jumbotron-fluid">
+      <div class="container">
+        <h1 class="display-4">Word Guess Game</h1>
+        <h3 class="lead">The letter selected is <h3 id="selected"></h3> </h3><br/>
+        <ul class="list-group list-group-horizontal">
+          <li class="list-group-item"><h1 id="ultr0"> </h1></li>
+          <li class="list-group-item"><h1 id="ultr1"> </h1></li>
+          <li class="list-group-item"><h1 id="ultr2"> </h1></li>
+          <li class="list-group-item"><h1 id="ultr3"> </h1></li>
+          <li class="list-group-item"><h1 id="ultr4"> </h1></li>
+          <li class="list-group-item"><h1 id="ultr5"> </h1></li>
+          <li class="list-group-item"><h1 id="ultr6"> </h1></li>
+          <li class="list-group-item"><h1 id="ultr7"> </h1></li>
+          <li class="list-group-item"><h1 id="ultr8"> </h1></li>
+          <li class="list-group-item"><h1 id="ultr9"> </h1></li>
+          <li class="list-group-item"><h1 id="ultr10"> </h1></li>
+          <li class="list-group-item"><h1 id="ultr11"> </h1></li>
+          <li class="list-group-item"><h1 id="ultr12"> </h1></li>
+          <li class="list-group-item"><h1 id="ultr13"> </h1></li>
+          <li class="list-group-item"><h1 id="ultr14"> </h1></li>
+          <li class="list-group-item"><h1 id="ultr15"> </h1></li>
+          <li class="list-group-item"><h1 id="ultr16"> </h1></li>
+          <li class="list-group-item"><h1 id="ultr17"> </h1></li>
+        </ul>
+      </div> 
+    </div> 
+</div> 
 <!--display row layout-->
 <div class="row" id="worddisply">
-    <div class="col-md-12">
+    <ul class="list-group list-group-horizontal">
+        <li class="list-group-item"><h1 id="ltr0"> </h1></li>
+        <li class="list-group-item"><h1 id="ltr1"> </h1></li>
+        <li class="list-group-item"><h1 id="ltr2"> </h1></li>
+        <li class="list-group-item"><h1 id="ltr3"> </h1></li>
+        <li class="list-group-item"><h1 id="ltr4"> </h1></li>
+        <li class="list-group-item"><h1 id="ltr5"> </h1></li>
+    </ul>
+  </div>
+  <div class="row"  >
+      <div class="jumbotron jumbotron-fluid" id = "finishbox">
+          <div class="container">
+            <h1 class="display-4" id = "Gameover"></h1>
+            
+          </div>
+      </div>
+  </div>  
+    <!--<div class="col-md-12">
       <span>
         <h1 id="ltr0"> </h1><h1 id="ltr1"> </h1><h1 id="ltr2"> </h1><h1 id="ltr3"> </h1><h1 id="ltr4"> </h1><h1 id="ltr5"> </h1><h1 id="ltr6"> </h1>
       </span>  
-    </div>
+    </div>-->
 </div>
-  </div><!--container /div-->
+</div><!--container /div-->
+  
     <script>
 // Define Variables, Arrays, Objects
-    var userInput;
-    var wordList = ["golf","birdie","par"];
+    var userInput = "";
+    var wordList = ["golf","birdie","par","fairway","bunker"];
     var wordArr = [];
     var gameWord;
     var usedLtr = [];
     var ltrChk;
-    var userInput;
+    var position;
+    var uposition;
+    var totlSlct = 0;
+    
 
 // determine what word is being used for game
     function selectWord() {
-        gameWord = wordList[Math.floor(Math.random()*2)];
+        gameWord = wordList[Math.floor(Math.random()*4)];
         console.log(gameWord);
         for (loop = 0; loop < gameWord.length; loop++) {
-        var position = "ltr" + loop;
-        document.getElementById(position).innerHTML = "__";
+        position = "ltr" + loop;
+        document.getElementById(position).textContent = "__";
         }; // end of for loop
         return gameWord;
     }; // end of function
 
  //determine game is over and ask for play again    
- function chkComp() {
+    function chkComp() {
+      console.log(gameWord.length,wordArr.length);
       if (gameWord.length === wordArr.length) {
-        document.getElementById(`Gameover`).innerHTML = "Game Over!  Would you like to play Again (y/n)";
-          if (userInput === "y") {
-            usedLtr = [];
-            wordArr = [];
-            selectWord();
-          }; // end of playagain if statement
+        document.getElementById(`Gameover`).textContent = "Game Over!  Would you like to play Again (y/n)";
+        //document.onkeyup = function() {
+          //yesno = event.key.toLocaleLowerCase();
+        //  console.log("input was ", yesno);
+        //  console.log("chkcomp",yesno);
+        //  if (yesno === "y") {
+        //    usedLtr = [];
+         //   wordArr = [];
+        //    totlSlct = 0;
+        //    selectWord();
+         // } else if (yesno === "n") {
+        //    document.getElementById(`Gameover`).innerHTML = "Thanks for Playing";
+        //  }; 
 
       }; //end of length compare if statement  
     }; //end of function
@@ -132,6 +119,10 @@
       userInput = event.key.toLocaleLowerCase();
       console.log("input was ", userInput);
       ltrChk = gameWord.indexOf(userInput);
+      uposition = "ultr" + totlSlct;
+      totlSlct = totlSlct + 1;
+      document.getElementById(`selected`).innerHTML = userInput; //outputs the input to the DOM
+      document.getElementById(uposition).textContent = userInput;
       console.log(ltrChk,"x");
       if (ltrChk != -1) {
         ltrPresent(); 
@@ -142,8 +133,7 @@
     
     function ltrPresent() {
         console.log(ltrChk,"y");
-        var position = "ltr" + ltrChk;
-        document.getElementById(`selected`).innerHTML = userInput; //outputs the input to the DOM
+        position = "ltr" + ltrChk;
         document.getElementById(position).innerHTML = userInput;
         console.log("pos",position);
         usedLtr.push(userInput); //attempt to eliminate duplicate letters
