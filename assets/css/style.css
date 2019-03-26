@@ -1,7 +1,58 @@
-button {font-family: 'Roboto Mono', monospace;
-        font-weight: 400;
+body {
+   
+    background-image: url("../images/background.jpg");
+}
+.display-4 {
+    font-weight: 600;
+
 }
 
-#worddisplay {
-    border: 2px solid black;
+.lead {
+    font-size: 25px;
+    font-weight: 500;
+}
+
+#selected {
+    font-size: 25px;
+    font-weight: 500;
+    padding-left: 5px;
+    padding-right: 5px;
+    color: rgb(241, 245, 21);
+}
+#topbox {
+    justify-content: center;
+    opacity: 100%;
+    
+}
+
+#letterselected {
+    width: 200;
+    justify-content: center;
+    
+}
+
+#remaining {
+    justify-content: center;
+}
+
+#Guesses {
+    padding-left: 5px;
+    padding-right: 5px;
+    color: rgb(241, 245, 21);
+}
+
+#lettersused {
+    justify-content: center;
+    padding-top:20px;
+    padding-bottom:20px;
+}
+#worddisply {
+    justify-content: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+#final {
+    justify-content: center;
+    opacity: 100%;
 }
