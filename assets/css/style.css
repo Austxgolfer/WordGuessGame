@@ -55,4 +55,17 @@ body {
 #final {
     justify-content: center;
     opacity: 100%;
+    color: blue;
+}
+#yesbutton {
+    background: green;
+}
+#nobutton {
+    background: red;
+}
+#buttons {
+    justify-content: center;
+}
+.invisible {
+    visibility: hidden;
 }
