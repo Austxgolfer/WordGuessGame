@@ -34,14 +34,6 @@
           <li class="list-group-item"><h1 id="ultr7"> </h1></li>
           <li class="list-group-item"><h1 id="ultr8"> </h1></li>
           <li class="list-group-item"><h1 id="ultr9"> </h1></li>
-          <li class="list-group-item"><h1 id="ultr10"> </h1></li>
-          <li class="list-group-item"><h1 id="ultr11"> </h1></li>
-          <li class="list-group-item"><h1 id="ultr12"> </h1></li>
-          <li class="list-group-item"><h1 id="ultr13"> </h1></li>
-          <li class="list-group-item"><h1 id="ultr14"> </h1></li>
-          <li class="list-group-item"><h1 id="ultr15"> </h1></li>
-          <li class="list-group-item"><h1 id="ultr16"> </h1></li>
-          <li class="list-group-item"><h1 id="ultr17"> </h1></li>
         </ul>
       </div> 
     <!--</div>-->
@@ -60,8 +52,13 @@
     </ul>
 </div>
   <div class="row" id="final"> 
-      <h1 class="display-4" id = "Gameover"></h1>
-  </div>  
+      <h1 class="display-4" id = "Gameover"></h1> 
+      <div id="buttons" class="btn-group invisible" role="group" aria-label="Basic example">
+        <button type="button" class="btn btn-secondary" id="yesbutton">Yes</button>
+        <button type="button" class="btn btn-secondary" id="nobutton">No</button>
+      </div>
+    </div>
+  </div>    
 </div><!--container /div-->
   
     <script>
@@ -76,6 +73,7 @@
     var uposition;
     var totlSlct = 0;
     var totGuess = 10;
+    var makvis;
 
 // determine what word is being used for game
     function selectWord() {
@@ -95,24 +93,22 @@
 
  //determine game is over and ask for play again    
     function chkComp() {
-      console.log(gameWord.length,wordArr.length);
-      if (gameWord.length === wordArr.length) {
-        document.getElementById(`Gameover`).textContent = "Game Over!  Would you like to play Again (y/n)";
-        //document.onkeyup = function() {
-          //yesno = event.key.toLocaleLowerCase();
-        //  console.log("input was ", yesno);
-        //  console.log("chkcomp",yesno);
-        //  if (yesno === "y") {
-        //    usedLtr = [];
-         //   wordArr = [];
-        //    totlSlct = 0;
-        //    selectWord();
-         // } else if (yesno === "n") {
-        //    document.getElementById(`Gameover`).innerHTML = "Thanks for Playing";
-        //  }; 
-
-      }; //end of length compare if statement  
-    }; //end of function
+      if (gameWord.length === wordArr.length || totGuess === 0){
+        document.getElementById(`Gameover`).textContent = "Game Over!  Would you like to play Again?";
+        makvis = document.getElementById(`buttons`);
+        makvis.className = "btn-group";
+        document.getElementById(`yesbutton`).onclick = function() {
+          makvis = document.getElementById(`buttons`);
+          makevis.className = "btn-group invisible";
+          document.getElementById(`Gameover`).textContent = "";
+          selectWord();};
+        document.getElementById(`nobutton`).onclick = function() { 
+          makvis = document.getElementById(`buttons`);
+          document.getElementById(`Gameover`).innerHTML = "Thanks for Playing";}; 
+          makevis.className = "btn-group invisible";
+      };  
+    };
+       
   
       
      
@@ -120,7 +116,6 @@
 
     document.onkeyup = function(event) {
       userInput = event.key.toLocaleLowerCase();
-      console.log("input was ", userInput);
       ltrChk = gameWord.indexOf(userInput);
       uposition = "ultr" + totlSlct;
       totlSlct = totlSlct + 1;
@@ -128,12 +123,10 @@
       document.getElementById(`selected`).innerHTML = userInput; //outputs the input to the DOM
       document.getElementById(uposition).textContent = userInput;
       document.getElementById(`Guesses`).innerHTML = totGuess;
-      console.log(ltrChk,"x");
       if (ltrChk != -1) {
         ltrPresent(); 
         chkComp(); // check for work complete
-      } else {console.log("not present");}; //end of ltrchk if statement
-    
+      } else {chkComp();}; //end of ltrchk if statement
     }; //end of onkeyup function
     
     function ltrPresent() {
