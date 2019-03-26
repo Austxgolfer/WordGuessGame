@@ -2,20 +2,27 @@
 <html lang="en-us">
   <head>
     <meta charset="UTF-8">
-    <title>Word Guess Game</title>
+    <title>Word Guess Game....of Golf</title>
     <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
     <!--font-family: 'Roboto Mono', monospace;-->
   </head>
   <body>
-    <div class="container">
+    <div class="container" id="mainpage">
 <!--Title row layout-->  
-<div class="row" id="titlerow">  
-    <div class="jumbotron jumbotron-fluid">
-      <div class="container">
-        <h1 class="display-4">Word Guess Game</h1>
-        <h3 class="lead">The letter selected is <h3 id="selected"></h3> </h3><br/>
+<div class="row" id="topbox">  
+  <!--  <div class="jumbotron jumbotron-fluid" id="topbox">-->
+      <!--<div class="container">-->
+  <h1 class="display-4">Word Guess Game....of Golf</h1><br/>
+</div>
+<div class="row" id="letterselected">        
+  <h3 class="lead">The letter selected is <h3 id="selected"></h3> </h3>
+</div>
+<div class="row" id="remaining">
+  <h3 class="lead">You have   </h3><h3 id ="Guesses"> </h3><h3 class="lead">  guesses remaining</h3>
+</div>  
+<div class="row" id="lettersused">      
         <ul class="list-group list-group-horizontal">
           <li class="list-group-item"><h1 id="ultr0"> </h1></li>
           <li class="list-group-item"><h1 id="ultr1"> </h1></li>
@@ -37,39 +44,30 @@
           <li class="list-group-item"><h1 id="ultr17"> </h1></li>
         </ul>
       </div> 
-    </div> 
-</div> 
+    <!--</div>-->
+<!--</div> -->
 <!--display row layout-->
 <div class="row" id="worddisply">
     <ul class="list-group list-group-horizontal">
-        <li class="list-group-item"><h1 id="ltr0"> </h1></li>
-        <li class="list-group-item"><h1 id="ltr1"> </h1></li>
-        <li class="list-group-item"><h1 id="ltr2"> </h1></li>
-        <li class="list-group-item"><h1 id="ltr3"> </h1></li>
-        <li class="list-group-item"><h1 id="ltr4"> </h1></li>
-        <li class="list-group-item"><h1 id="ltr5"> </h1></li>
+        <li class="list-group-item"><h1 id="ltr0">**</h1></li>
+        <li class="list-group-item"><h1 id="ltr1">** </h1></li>
+        <li class="list-group-item"><h1 id="ltr2">**</h1></li>
+        <li class="list-group-item"><h1 id="ltr3">** </h1></li>
+        <li class="list-group-item"><h1 id="ltr4">** </h1></li>
+        <li class="list-group-item"><h1 id="ltr5">**</h1></li>
+        <li class="list-group-item"><h1 id="ltr6">**</h1></li>
+        <li class="list-group-item"><h1 id="ltr8">**</h1></li>
     </ul>
-  </div>
-  <div class="row"  >
-      <div class="jumbotron jumbotron-fluid" id = "finishbox">
-          <div class="container">
-            <h1 class="display-4" id = "Gameover"></h1>
-            
-          </div>
-      </div>
-  </div>  
-    <!--<div class="col-md-12">
-      <span>
-        <h1 id="ltr0"> </h1><h1 id="ltr1"> </h1><h1 id="ltr2"> </h1><h1 id="ltr3"> </h1><h1 id="ltr4"> </h1><h1 id="ltr5"> </h1><h1 id="ltr6"> </h1>
-      </span>  
-    </div>-->
 </div>
+  <div class="row" id="final"> 
+      <h1 class="display-4" id = "Gameover"></h1>
+  </div>  
 </div><!--container /div-->
   
     <script>
 // Define Variables, Arrays, Objects
     var userInput = "";
-    var wordList = ["golf","birdie","par","fairway","bunker"];
+    var wordList = ["golf","birdie","par","fairway","bunker","fairway","green","driver"];
     var wordArr = [];
     var gameWord;
     var usedLtr = [];
@@ -77,15 +75,20 @@
     var position;
     var uposition;
     var totlSlct = 0;
-    
+    var totGuess = 10;
 
 // determine what word is being used for game
     function selectWord() {
-        gameWord = wordList[Math.floor(Math.random()*4)];
+        gameWord = wordList[Math.floor(Math.random()*8)];
         console.log(gameWord);
         for (loop = 0; loop < gameWord.length; loop++) {
         position = "ltr" + loop;
+        document.getElementById(`Guesses`).textContent = totGuess;
         document.getElementById(position).textContent = "__";
+        usedLtr = [];
+        wordArr = [];
+        totlSlct = 0;
+        totGuess = 10;
         }; // end of for loop
         return gameWord;
     }; // end of function
@@ -121,8 +124,10 @@
       ltrChk = gameWord.indexOf(userInput);
       uposition = "ultr" + totlSlct;
       totlSlct = totlSlct + 1;
+      totGuess = totGuess - 1;
       document.getElementById(`selected`).innerHTML = userInput; //outputs the input to the DOM
       document.getElementById(uposition).textContent = userInput;
+      document.getElementById(`Guesses`).innerHTML = totGuess;
       console.log(ltrChk,"x");
       if (ltrChk != -1) {
         ltrPresent(); 
