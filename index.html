@@ -53,7 +53,7 @@
 </div>
   <div class="row" id="final"> 
       <h1 class="display-4" id = "Gameover"></h1> 
-      <div id="buttons" class="btn-group invisible" role="group" aria-label="Basic example">
+      <div id="buttons" class="btn-group" role="group" aria-label="Basic example">
         <button type="button" class="btn btn-secondary" id="yesbutton">Yes</button>
         <button type="button" class="btn btn-secondary" id="nobutton">No</button>
       </div>
@@ -67,45 +67,47 @@
     var wordList = ["golf","birdie","par","fairway","bunker","fairway","green","driver"];
     var wordArr = [];
     var gameWord;
-    var usedLtr = [];
+    //var usedLtr = [];
     var ltrChk;
     var position;
     var uposition;
     var totlSlct = 0;
     var totGuess = 10;
-    var makvis;
-
+    
+    document.getElementById(`buttons`).hidden = true;
 // determine what word is being used for game
     function selectWord() {
-        gameWord = wordList[Math.floor(Math.random()*8)];
-        console.log(gameWord);
-        for (loop = 0; loop < gameWord.length; loop++) {
-        position = "ltr" + loop;
-        document.getElementById(`Guesses`).textContent = totGuess;
-        document.getElementById(position).textContent = "__";
-        usedLtr = [];
-        wordArr = [];
+        gameWord = wordList[Math.floor(Math.random()*8)];// select random word from array
+        wordArr = [];// reset variables following restart of game
         totlSlct = 0;
         totGuess = 10;
+        document.getElementById(`selected`).innerHTML = " ";   //reset guesses and letter selected after restart
+        document.getElementById(`Guesses`).textContent = totGuess;
+        for (loop = 0; loop < gameWord.length; loop++) { //put dashes in word disply
+        position = "ltr" + loop;
+        document.getElementById(position).textContent = "__";
         }; // end of for loop
+        for (var x = 0; x < 10; x++){  //clear displayed selected letters
+          y = "ultr" + x;
+          document.getElementById(y).textContent = " ";
+        }
         return gameWord;
     }; // end of function
 
  //determine game is over and ask for play again    
     function chkComp() {
-      if (gameWord.length === wordArr.length || totGuess === 0){
+      console.log("gw" + gameWord.length, "wa" + wordArr.length);
+      if (gameWord.length === wordArr.length || totGuess === 0){  //determing if game is over
         document.getElementById(`Gameover`).textContent = "Game Over!  Would you like to play Again?";
-        makvis = document.getElementById(`buttons`);
-        makvis.className = "btn-group";
+        document.getElementById(`buttons`).hidden = false; //display buttons after gameover
         document.getElementById(`yesbutton`).onclick = function() {
-          makvis = document.getElementById(`buttons`);
-          makevis.className = "btn-group invisible";
+          document.getElementById(`buttons`).hidden = true;  // hide buttons after click selection
           document.getElementById(`Gameover`).textContent = "";
-          selectWord();};
+          selectWord();};  // restart the game
         document.getElementById(`nobutton`).onclick = function() { 
-          makvis = document.getElementById(`buttons`);
-          document.getElementById(`Gameover`).innerHTML = "Thanks for Playing";}; 
-          makevis.className = "btn-group invisible";
+          document.getElementById(`buttons`).hidden = true;
+          document.getElementById(`Gameover`).innerHTML = "Thanks for Playing";}; // end of game
+          
       };  
     };
        
@@ -120,27 +122,26 @@
       uposition = "ultr" + totlSlct;
       totlSlct = totlSlct + 1;
       totGuess = totGuess - 1;
-      document.getElementById(`selected`).innerHTML = userInput; //outputs the input to the DOM
-      document.getElementById(uposition).textContent = userInput;
+      document.getElementById(`selected`).innerHTML = userInput; 
+      document.getElementById(uposition).innerHTML = userInput;
       document.getElementById(`Guesses`).innerHTML = totGuess;
       if (ltrChk != -1) {
-        ltrPresent(); 
+        console.log(wordArr.length);
+        wordArr.push(userInput); //track correct selections in array to determine if game is over
+        console.log(wordArr.length + "after");
+        ltrPresent(); //call function for action if the letter is present
         chkComp(); // check for work complete
-      } else {chkComp();}; //end of ltrchk if statement
+      } else {chkComp();}; //end of ltrchk if statement call function to check game is over
     }; //end of onkeyup function
     
     function ltrPresent() {
-        console.log(ltrChk,"y");
         position = "ltr" + ltrChk;
         document.getElementById(position).innerHTML = userInput;
-        console.log("pos",position);
-        usedLtr.push(userInput); //attempt to eliminate duplicate letters
-        for (var loop = ltrChk; loop <= gameWord.length; loop++) {
+        for (var loop = ltrChk + 1; loop <= gameWord.length; loop++) {
           if (gameWord[ltrChk] === gameWord[loop]) { //checks for second letter of the same value in the gameword
-            wordArr.push(userInput);
+            wordArr.push(userInput); //track correct letters if it is a dupicate
             var position = "ltr" + loop;
             document.getElementById(position).innerHTML = userInput; //outputs the input to the DOM 
-            console.log(loop);
           }; //end of gameword if statement 
         }; // end of for statement
     };
@@ -150,7 +151,7 @@
 
 
 
-     selectWord();
+     selectWord();  // start the game
      
      
      
